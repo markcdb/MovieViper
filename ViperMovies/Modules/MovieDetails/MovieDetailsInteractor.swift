@@ -1,46 +1,52 @@
 //
-//  MovieDetailsViewModel.swift
-//  Movie
+//  MovieDetailsInteractor.swift
+//  ViperMovies
 //
-//  Created by Mark Christian Buot on 11/07/2019.
-//  Copyright © 2019 Mark Christian Buot. All rights reserved.
+//  Created by user on 4/10/19.
+//  Copyright © 2019 gojek. All rights reserved.
 //
 
 import Foundation
 
-class MovieDetailsViewModel: BaseVMRepo<MovieRepository>, MovieListPresenter, MovieDetailsPresenter {
-    internal var movie: MovieDetails?
+protocol MovieDetailsInteractorDelegate: class {
     
-    internal var movies: [MovieDetails] = []
+    var state: ViewState? { get set }
     
-    internal var id: Int?
-    
-    internal var movieSorter: MovieSorter?
+    func didFailedFetchMovie(_ error: String?)
+    func didFailedFetchMovies(_ error: String?)
+    func didReceivedFetchMovie(_ movie: MovieDetails?)
+    func didReceivedFetchMovies(_ movies: [MovieDetails]?)
+}
 
-    override init(delegate: BaseVMDelegate?,
-                  repository: MovieRepository) {
-        super.init(delegate: delegate,
-                   repository: repository)
+class MovieDetailsInteractor: BaseInteractor<MovieRepository> {
+    internal var id: Int?
+
+    internal var movieSorter: MovieSorter?
+    
+    internal weak var interactorDelegate: MovieDetailsInteractorDelegate?
+    
+    override init(repository: MovieRepository) {
+        super.init(repository: repository)
         
         movieSorter = MovieSorter.defaultWithReleaseDate()
     }
-    
+ 
     override func request() {
         super.request()
         
-        viewState.accept(.loading(nil))
+        interactorDelegate?.state = .loading(nil)
         
-        repository?.get(params: id ?? 0,
+        repository?.get(params: id,
                         completion: {[weak self] (movie, error) in
                             guard let self = self else { return }
                             
                             if error != nil {
-                                self.viewState.accept(.error(nil))
+                                self.interactorDelegate?.state = .error(nil)
                                 return
                             }
                             
-                            self.movie = movie
-                            self.viewState.accept(.success(nil))
+                            self.interactorDelegate?.didReceivedFetchMovie(movie)
+                            self.interactorDelegate?.state = .success(nil)
         })
     }
     
@@ -60,7 +66,8 @@ class MovieDetailsViewModel: BaseVMRepo<MovieRepository>, MovieListPresenter, Mo
                                         return
                                     }
                                     
-                                    self.movies.append(contentsOf: movies ?? [])
+                                    
+                                    self.interactorDelegate?.didReceivedFetchMovies(movies)
                                     completion()
                                     
                                     let page = (self.movieSorter?.page ?? 0) + 1
@@ -68,6 +75,7 @@ class MovieDetailsViewModel: BaseVMRepo<MovieRepository>, MovieListPresenter, Mo
         })
     }
     
+    /*
     override func retry() {
         super.retry()
         
@@ -80,4 +88,5 @@ class MovieDetailsViewModel: BaseVMRepo<MovieRepository>, MovieListPresenter, Mo
         movieSorter?.page = 1
         movies.removeAll()
     }
+    */
 }

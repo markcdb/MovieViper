@@ -8,10 +8,9 @@
 
 import Foundation
 
-protocol MovieListPresenter {
+protocol MovieListPresenterProtocol {
     
     var movies: [MovieDetails] { get set }
-    var movieSorter: MovieSorter? { get set }
 
     func getMovieCount() -> Int
     func getMovieIdAt(_ index: Int) -> Int?
@@ -42,9 +41,11 @@ protocol MovieListPresenter {
     func getIsoLanguageStringAt(_ index: Int) -> [String]
     func getGenreNameStringAt(_ index: Int) -> [String]
     func getCompanyNameStringAt(_ index: Int) -> [String]
+    func numberOfRows(_ section: Int) -> Int
+    func isLastPage() -> Bool
 }
 
-extension MovieListPresenter {
+extension MovieListPresenterProtocol {
     
     func getMovieCount() -> Int {
         
@@ -217,5 +218,10 @@ extension MovieListPresenter {
         guard let companies = getProductionCompaniesAt(index) else { return [] }
         
         return MovieDetails.getCompanyNameStringFrom(companies)
+    }
+    
+    func numberOfRows(_ section: Int) -> Int {
+        
+        return getMovieCount()
     }
 }

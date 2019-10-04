@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseTableViewController<T: BaseVMRequestProtocol>: BaseVC<T> {
+class BaseTableViewController<T: BasePresenterRequesterProtocol>: BaseVC<T> {
 
     @IBOutlet weak var tableView: BaseTableView?
     

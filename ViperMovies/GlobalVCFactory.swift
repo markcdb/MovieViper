@@ -19,9 +19,9 @@ class GlobalVCFactory {
         let viewController  = Storyboard.movie.instantiateViewController(withIdentifier: sid)
         guard let vc = viewController as? MovieDetailsViewController else { return nil }
         
-        let vm       = GlobalVMFactory.createMovieDetailsVM(delegate: vc)
-        vm.id        = id
-        vc.viewModel = vm
+        let presenter   = PresenterFactory.createMovieDetailsPresenterFromVC(vc,
+                                                                             id: id ?? 0)
+        vc.presenter    = presenter
         
         return vc
     }
@@ -32,9 +32,9 @@ class GlobalVCFactory {
         let viewController  = Storyboard.movie.instantiateViewController(withIdentifier: sid)
         guard let vc = viewController as? WebViewController else { return nil }
         
-        let vm       = GlobalVMFactory.createWebVM(delegate: vc)
-        vm.urlString = NetworkConfig.webUrl
-        vc.viewModel = vm
+        let presenter = PresenterFactory.createWebViewPresenterFromVC(vc)
+        presenter?.urlString = NetworkConfig.webUrl
+        vc.presenter = presenter
         
         return vc
     }

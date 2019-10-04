@@ -19,7 +19,7 @@ class MovieSimilarCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView?
     
     var scrollOffset: CGPoint?
-    var presenter: MovieListPresenter?
+    var presenter: MovieListPresenterProtocol?
     weak var delegate: MovieSimilarCellDelegate?
     
     let cells = [Cells.similarCell,
@@ -53,7 +53,7 @@ extension MovieSimilarCell: UICollectionViewDelegate, UICollectionViewDataSource
                         numberOfItemsInSection section: Int) -> Int {
         let count = presenter?.getMovieCount() ?? 0
         
-        if presenter?.movieSorter?.isLastPage == true {
+        if presenter?.isLastPage() == true {
             return count
         }
         

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WebViewController: BaseVC<WebViewModel> {
+class WebViewController: BaseVC<WebViewPresenter> {
     
     @IBOutlet weak var webView: PagesWebView?
     
@@ -17,7 +17,7 @@ class WebViewController: BaseVC<WebViewModel> {
 
         self.title = Titles.bookMovie
         // Do any additional setup after loading the view.
-        webView?.initView(urlString: viewModel?.urlString ?? blank_,
+        webView?.initView(urlString: presenter?.urlString ?? blank_,
                          loadingYOffset: -40)
     }
     

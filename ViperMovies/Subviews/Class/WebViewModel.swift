@@ -8,13 +8,12 @@
 
 import UIKit
 
-class WebViewModel: BaseVMRepo<MovieRepository> {
+class WebViewPresenter: BasePresenter<MovieDetailsInteractor> {
 
     var urlString: String?
     
-    override init(delegate: BaseVMDelegate?,
-                  repository: MovieRepository) {
-        super.init(delegate: delegate,
-                   repository: repository)
+    override init(interactor: MovieDetailsInteractor?) {
+        super.init(interactor: interactor)
+        
     }
 }

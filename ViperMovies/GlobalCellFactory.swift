@@ -33,7 +33,7 @@ class GlobalCellFactory {
         return cell
     }
     
-    static func createMoviePreviewCell(presenter: MovieListPresenter?,
+    static func createMoviePreviewCell(presenter: MovieListPresenterProtocol?,
                                        tableView: UITableView,
                                        indexPath: IndexPath) -> MoviePreviewCell? {
         
@@ -55,7 +55,7 @@ class GlobalCellFactory {
         return cell
     }
     
-    static func createMovieHeaderCell(presenter: MovieDetailsPresenter?,
+    static func createMovieHeaderCell(presenter: MovieDetailsPresenterProtocol?,
                                       tableView: UITableView,
                                       indexPath: IndexPath) -> MovieHeaderCell? {
         
@@ -80,7 +80,7 @@ class GlobalCellFactory {
         return cell
     }
     
-    static func createMovieDetailsCell(presenter: MovieDetailsPresenter?,
+    static func createMovieDetailsCell(presenter: MovieDetailsPresenterProtocol?,
                                        tableView: UITableView,
                                        indexPath: IndexPath,
                                        delegate: MovieDetailsCellDelegate) -> MovieDetailsCell? {
@@ -102,7 +102,7 @@ class GlobalCellFactory {
         return cell
     }
     
-    static func createMovieSimilarCell(presenter: MovieListPresenter?,
+    static func createMovieSimilarCell(presenter: MovieListPresenterProtocol?,
                                        tableView: UITableView,
                                        indexPath: IndexPath,
                                        delegate: MovieSimilarCellDelegate) -> MovieSimilarCell? {
@@ -118,7 +118,7 @@ class GlobalCellFactory {
         return cell
     }
     
-    static func createSimilarCell(presenter: MovieListPresenter?,
+    static func createSimilarCell(presenter: MovieListPresenterProtocol?,
                                   collectionView: UICollectionView,
                                   indexPath: IndexPath) -> SimilarCell? {
         

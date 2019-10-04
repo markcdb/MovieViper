@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieDetailsViewController: BaseTableViewController<MovieDetailsViewModel>,
+class MovieDetailsViewController: BaseTableViewController<MovieDetailsPresenter>,
 UITableViewDelegate, UITableViewDataSource {
 
     let cellIdentifiers = [Cells.loaderCell,
@@ -34,8 +34,6 @@ UITableViewDelegate, UITableViewDataSource {
         tableView?.dataSource      = self
         tableView?.refreshControl  = ViewFactory.createRefreshControler(self,
                                                                         action: #selector(pullRefresh))
-        
-        viewModel?.request()
     }
     
     override func push() {
@@ -56,7 +54,7 @@ UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if viewModel?.viewState.value == .error(nil) {
+        if presenter?.state == .error(nil) {
             return tableView.frame.height
         }
         
@@ -66,7 +64,7 @@ UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
         
-        if viewModel?.viewState.value == .success(nil) {
+        if presenter?.state == .success(nil) {
             return 3
         }
         
@@ -78,22 +76,22 @@ UITableViewDelegate, UITableViewDataSource {
         
         var cell: UITableViewCell?
         
-        switch viewModel?.viewState.value {
+        switch presenter?.state {
         case .loading(_)?:
             cell = CellFactory.createLoaderCell(tableView: tableView,
                                                 indexPath: indexPath)
         case .success(_)?:
             if indexPath.row == 0 {
-                cell = CellFactory.createMovieHeaderCell(presenter: viewModel,
+                cell = CellFactory.createMovieHeaderCell(presenter: presenter,
                                                          tableView: tableView,
                                                          indexPath: indexPath)
             } else if indexPath.row == 1 {
-                cell = CellFactory.createMovieDetailsCell(presenter: viewModel,
+                cell = CellFactory.createMovieDetailsCell(presenter: presenter,
                                                           tableView: tableView,
                                                           indexPath: indexPath,
                                                           delegate: self)
             } else {
-                cell = CellFactory.createMovieSimilarCell(presenter: viewModel,
+                cell = CellFactory.createMovieSimilarCell(presenter: presenter,
                                                           tableView: tableView,
                                                           indexPath: indexPath,
                                                           delegate: self)
@@ -116,15 +114,15 @@ UITableViewDelegate, UITableViewDataSource {
 extension MovieDetailsViewController {
     
     @objc func pullRefresh() {
-        guard let state = viewModel?.viewState.value else { return }
+        guard let state = presenter?.state else { return }
         guard state != .loading(nil) else {
             tableView?.endRefreshing()
             return
         }
         
-        viewModel?.resetPage()
+        presenter?.resetPage()
         tableView?.beginRefreshing()
-        viewModel?.request()
+        presenter?.request()
     }
     
     func getSimilar() {
@@ -132,7 +130,7 @@ extension MovieDetailsViewController {
         
         isFetchingSimilar = true
         
-        viewModel?.getSimilar {[weak self] in
+        presenter?.getSimilar {[weak self] in
             guard let self = self else { return }
             
             let idx = IndexPath(row: 2, section: 0)

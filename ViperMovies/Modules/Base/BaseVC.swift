@@ -8,9 +8,9 @@
 
 import UIKit
 
-class BaseVC<T: BaseVMRequestProtocol>: UIViewController {
+class BaseVC<T: BasePresenterRequesterProtocol>: UIViewController {
 
-    var viewModel: T?
+    var presenter: T?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +66,7 @@ class BaseVC<T: BaseVMRequestProtocol>: UIViewController {
     
     @objc func retry(_ notifiaction: Notification) {
         
-        viewModel?.retry()
+        presenter?.retry()
     }
 }
 

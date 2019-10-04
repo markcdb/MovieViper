@@ -8,33 +8,36 @@
 
 import Foundation
 
-typealias VMFactory = GlobalVMFactory
+typealias PresenterFactory = GlobalPresenterFactory
 
-class GlobalVMFactory {
+class GlobalPresenterFactory {
     
-    static func createMovieListVM(repository: MovieRepository? = nil,
-                                  delegate: BaseVMDelegate?) -> MovieListViewModel {
-        let viewModel = MovieListViewModel(delegate: delegate,
-                                           repository: repository ?? MovieRepository())
-        
-        return viewModel
+    static func createMovieListPresenterFromVC(_ vc: MovieListViewController,
+                                               repository: MovieRepository? = nil) -> MovieListPresenter? {
+        let router    = MovieListRouter(navigationController: vc.navigationController)
+        let interactor = MovieListInteractor(repository: repository ?? MovieRepository())
+        let presenter = MovieListPresenter(interactor: interactor,
+                                           router: router)
+        interactor.interactorDelegate = presenter
+        return presenter
     }
     
-    static func createMovieDetailsVM(repository: MovieRepository? = nil,
-                                     delegate: BaseVMDelegate?) -> MovieDetailsViewModel {
-        
-        let viewModel = MovieDetailsViewModel(delegate: delegate,
-                                              repository: repository ?? MovieRepository())
-        
-        return viewModel
+    static func createMovieDetailsPresenterFromVC(_ vc: MovieDetailsViewController,
+                                                  id: Int,
+                                                  repository: MovieRepository? = nil) -> MovieDetailsPresenter? {
+        let router     = MovieDetailsRouter(navigationController: vc.navigationController)
+        let interactor = MovieDetailsInteractor(repository: repository ?? MovieRepository())
+        interactor.id  = id
+        let presenter  = MovieDetailsPresenter(interactor: interactor,
+                                               router: router)
+        interactor.interactorDelegate = presenter
+        return presenter
     }
     
-    static func createWebVM(repository: MovieRepository? = nil,
-                            delegate: BaseVMDelegate?) -> WebViewModel {
-        
-        let viewModel = WebViewModel(delegate: delegate,
-                                     repository: repository ?? MovieRepository())
-        
-        return viewModel
+    static func createWebViewPresenterFromVC(_ vc: WebViewController) -> WebViewPresenter? {
+       
+        let interactor = MovieDetailsInteractor(repository: MovieRepository())
+        let presenter = WebViewPresenter(interactor: interactor)
+        return presenter
     }
 }
