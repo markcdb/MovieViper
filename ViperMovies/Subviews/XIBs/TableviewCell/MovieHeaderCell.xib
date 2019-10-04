@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieHeaderCell" rowHeight="366" id="hSI-LL-n9t" customClass="MovieHeaderCell" customModule="Movie" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="449" height="366"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hSI-LL-n9t" id="p9b-n7-f4C">
+                <rect key="frame" x="0.0" y="0.0" width="449" height="365.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9e-g1-2Hd">
+                        <rect key="frame" x="0.0" y="0.0" width="449" height="365.5"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="ffh_backdrop" translatesAutoresizingMaskIntoConstraints="NO" id="GgR-tG-bjN">
+                                <rect key="frame" x="0.0" y="0.0" width="449" height="251"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="251" id="Fk7-M7-GTv"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ffh" translatesAutoresizingMaskIntoConstraints="NO" id="VLt-aL-NBI">
+                                <rect key="frame" x="24" y="197.5" width="144" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="0Yd-Y4-3ma"/>
+                                    <constraint firstAttribute="width" constant="144" id="5Fy-Rc-B8f"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spider-Man: Far From Home" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8d4-Vw-RyL" customClass="BaseLabel" customModule="Movie" customModuleProvider="target">
+                                <rect key="frame" x="176" y="270" width="265" height="60.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="19"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isDescriptor" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Popularity:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTL-G4-KHe" customClass="BaseLabel" customModule="Movie" customModuleProvider="target">
+                                <rect key="frame" x="176" y="338.5" width="76" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isDescriptor" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8x-xl-6bX" customClass="BaseLabel" customModule="Movie" customModuleProvider="target">
+                                <rect key="frame" x="260" y="338.5" width="181" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isDescriptor" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GgR-tG-bjN" firstAttribute="trailing" secondItem="73L-iy-TCK" secondAttribute="trailing" id="6z3-fm-mhq"/>
+                            <constraint firstItem="73L-iy-TCK" firstAttribute="trailing" secondItem="X8x-xl-6bX" secondAttribute="trailing" constant="8" id="Ayq-Gt-9qo"/>
+                            <constraint firstItem="73L-iy-TCK" firstAttribute="trailing" secondItem="8d4-Vw-RyL" secondAttribute="trailing" constant="8" id="BCD-dH-UlG"/>
+                            <constraint firstItem="73L-iy-TCK" firstAttribute="bottom" secondItem="X8x-xl-6bX" secondAttribute="bottom" constant="8" id="PTy-tg-aoI"/>
+                            <constraint firstItem="GgR-tG-bjN" firstAttribute="leading" secondItem="73L-iy-TCK" secondAttribute="leading" id="Q5j-kP-lDV"/>
+                            <constraint firstItem="hTL-G4-KHe" firstAttribute="top" secondItem="8d4-Vw-RyL" secondAttribute="bottom" constant="8" id="RZD-iF-bEN"/>
+                            <constraint firstItem="GgR-tG-bjN" firstAttribute="top" secondItem="73L-iy-TCK" secondAttribute="top" id="SY6-WH-1LO"/>
+                            <constraint firstItem="hTL-G4-KHe" firstAttribute="leading" secondItem="VLt-aL-NBI" secondAttribute="trailing" constant="8" id="TpS-kR-aTv"/>
+                            <constraint firstItem="VLt-aL-NBI" firstAttribute="leading" secondItem="73L-iy-TCK" secondAttribute="leading" constant="24" id="VG0-nm-UGx"/>
+                            <constraint firstItem="8d4-Vw-RyL" firstAttribute="top" secondItem="GgR-tG-bjN" secondAttribute="bottom" constant="19" id="Xmy-yE-RRh"/>
+                            <constraint firstItem="X8x-xl-6bX" firstAttribute="top" secondItem="hTL-G4-KHe" secondAttribute="top" id="gKC-5g-MLM"/>
+                            <constraint firstItem="73L-iy-TCK" firstAttribute="bottom" secondItem="hTL-G4-KHe" secondAttribute="bottom" constant="8" id="nzf-k4-PjF"/>
+                            <constraint firstItem="VLt-aL-NBI" firstAttribute="bottom" secondItem="hTL-G4-KHe" secondAttribute="bottom" id="oiq-0J-PzA"/>
+                            <constraint firstItem="8d4-Vw-RyL" firstAttribute="leading" secondItem="VLt-aL-NBI" secondAttribute="trailing" constant="8" id="osE-3r-M68"/>
+                            <constraint firstItem="X8x-xl-6bX" firstAttribute="leading" secondItem="hTL-G4-KHe" secondAttribute="trailing" constant="8" id="wf7-UV-WDX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="73L-iy-TCK"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="d9e-g1-2Hd" secondAttribute="trailing" id="Idt-gQ-7Uv"/>
+                    <constraint firstItem="d9e-g1-2Hd" firstAttribute="top" secondItem="p9b-n7-f4C" secondAttribute="top" id="SnJ-fl-CmK"/>
+                    <constraint firstAttribute="bottom" secondItem="d9e-g1-2Hd" secondAttribute="bottom" id="Vqr-lX-buX"/>
+                    <constraint firstItem="d9e-g1-2Hd" firstAttribute="leading" secondItem="p9b-n7-f4C" secondAttribute="leading" id="tbB-Q0-eTa"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="backdropImage" destination="GgR-tG-bjN" id="TuJ-uN-xGt"/>
+                <outlet property="posterImage" destination="VLt-aL-NBI" id="xCN-1y-PZL"/>
+                <outlet property="subTitleLabel" destination="X8x-xl-6bX" id="14B-f3-Vzn"/>
+                <outlet property="titleLabel" destination="8d4-Vw-RyL" id="6rw-Um-sDn"/>
+            </connections>
+            <point key="canvasLocation" x="165.94202898550725" y="298.66071428571428"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ffh" width="2000" height="3000"/>
+        <image name="ffh_backdrop" width="3840" height="2160"/>
+    </resources>
+</document>
