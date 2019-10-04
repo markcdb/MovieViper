@@ -16,12 +16,6 @@ UITableViewDataSource {
                            Cells.errorCell,
                            Cells.moviePreviewCell]
     
-    var selectedIndex: IndexPath? {
-        didSet {
-            push()
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,21 +33,7 @@ UITableViewDataSource {
         tableView?.refreshControl  = ViewFactory.createRefreshControler(self,
                                                                         action: #selector(pullRefresh))
         presenter                  = PresenterFactory.createMovieListPresenterFromVC(self)
-    }
-    
-    override func push() {
-        super.push()
-        
-        guard let indexPath = selectedIndex else { return }
-        
-        let index = indexPath.row
-        
-        if let id = presenter?.getMovieIdAt(index),
-            let vc = GlobalVCFactory.createMovieDetailsWithId(id) {
-            
-            navigationController?.pushViewController(vc,
-                                                     animated: true)
-        }
+        presenter?.request()
     }
     
     func tableView(_ tableView: UITableView,
@@ -95,12 +75,13 @@ UITableViewDataSource {
         
         switch presenter?.state {
         case .success(_)?:
-            cell = CellFactory.createErrorCell(tableView: tableView,
-                                               indexPath: indexPath)
-        case .error(_)?:
             cell = CellFactory.createMoviePreviewCell(presenter: presenter,
                                                       tableView: tableView,
                                                       indexPath: indexPath)
+        
+        case .error(_)?:
+            cell = CellFactory.createErrorCell(tableView: tableView,
+                                               indexPath: indexPath)
         default:
             break
         }
@@ -114,7 +95,7 @@ UITableViewDataSource {
         tableView.deselectRow(at: indexPath,
                               animated: true)
         
-        selectedIndex = indexPath
+        presenter?.pushFromRow(indexPath.row)
     }
     
     func tableView(_ tableView: UITableView,

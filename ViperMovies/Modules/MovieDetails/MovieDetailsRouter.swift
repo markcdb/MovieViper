@@ -16,4 +16,13 @@ class MovieDetailsRouter {
     init(navigationController: UINavigationController?) {
         self.navigationController = navigationController
     }
+    
+    func pushToDetailsWithId(_ id: Int) {
+        if let nv = navigationController,
+            let vc = GlobalVCFactory.createMovieDetailsWithId(id,
+                                                              nv: nv) {
+            navigationController?.pushViewController(vc,
+                                                     animated: true)
+        }
+    }
 }

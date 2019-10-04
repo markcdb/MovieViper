@@ -82,8 +82,7 @@ class GlobalCellFactory {
     
     static func createMovieDetailsCell(presenter: MovieDetailsPresenterProtocol?,
                                        tableView: UITableView,
-                                       indexPath: IndexPath,
-                                       delegate: MovieDetailsCellDelegate) -> MovieDetailsCell? {
+                                       indexPath: IndexPath) -> MovieDetailsCell? {
         
         let id           = Cells.movieDetailsCell
         let sypnosis     = presenter?.getOverview() ?? blank_
@@ -97,7 +96,6 @@ class GlobalCellFactory {
         cell?.genresLabel?.text     = genres.isEmpty == true ? "n/a" : genres
         cell?.languagesLabel?.text  = languages.isEmpty == true ? "n/a" : languages
         cell?.durationLabel?.text   = runtime
-        cell?.delegate              = delegate
         
         return cell
     }

@@ -14,6 +14,5 @@ class WebViewPresenter: BasePresenter<MovieDetailsInteractor> {
     
     override init(interactor: MovieDetailsInteractor?) {
         super.init(interactor: interactor)
-        
     }
 }

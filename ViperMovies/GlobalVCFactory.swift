@@ -13,14 +13,16 @@ typealias VCFactory = GlobalVCFactory
 
 class GlobalVCFactory {
     
-    internal static func createMovieDetailsWithId(_ id: Int?) -> UIViewController? {
+    internal static func createMovieDetailsWithId(_ id: Int?,
+                                                  nv: UINavigationController) -> UIViewController? {
         let sid = StoryboardIDs.movieDetails
         
         let viewController  = Storyboard.movie.instantiateViewController(withIdentifier: sid)
         guard let vc = viewController as? MovieDetailsViewController else { return nil }
         
         let presenter   = PresenterFactory.createMovieDetailsPresenterFromVC(vc,
-                                                                             id: id ?? 0)
+                                                                             id: id ?? 0,
+                                                                             nv: nv)
         vc.presenter    = presenter
         
         return vc

@@ -88,7 +88,7 @@
 		CEBFD34C2346EFB300EE52B6 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBFD2FF2346EFB300EE52B6 /* Response.swift */; };
 		CEBFD34D2346EFB300EE52B6 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBFD3002346EFB300EE52B6 /* Request.swift */; };
 		CEBFD34E2346EFB300EE52B6 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBFD3012346EFB300EE52B6 /* API.swift */; };
-		CEBFD34F2346EFB300EE52B6 /* GlobalVMFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBFD3022346EFB300EE52B6 /* GlobalVMFactory.swift */; };
+		CEBFD34F2346EFB300EE52B6 /* GlobalPresenterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBFD3022346EFB300EE52B6 /* GlobalPresenterFactory.swift */; };
 		CEBFD3502346EFB300EE52B6 /* GlobalEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBFD3032346EFB300EE52B6 /* GlobalEnums.swift */; };
 		CEBFD3552346EFF000EE52B6 /* MovieDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBFD3512346EFEF00EE52B6 /* MovieDetailsTests.swift */; };
 		CEBFD3562346EFF000EE52B6 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEBFD3522346EFEF00EE52B6 /* Info.plist */; };
@@ -195,7 +195,7 @@
 		CEBFD2FF2346EFB300EE52B6 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		CEBFD3002346EFB300EE52B6 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		CEBFD3012346EFB300EE52B6 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		CEBFD3022346EFB300EE52B6 /* GlobalVMFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVMFactory.swift; sourceTree = "<group>"; };
+		CEBFD3022346EFB300EE52B6 /* GlobalPresenterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalPresenterFactory.swift; sourceTree = "<group>"; };
 		CEBFD3032346EFB300EE52B6 /* GlobalEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalEnums.swift; sourceTree = "<group>"; };
 		CEBFD3512346EFEF00EE52B6 /* MovieDetailsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsTests.swift; sourceTree = "<group>"; };
 		CEBFD3522346EFEF00EE52B6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -303,7 +303,7 @@
 				CEBFD3032346EFB300EE52B6 /* GlobalEnums.swift */,
 				CEBFD2C12346EFB300EE52B6 /* GlobalVCFactory.swift */,
 				CEBFD2A92346EFB200EE52B6 /* GlobalViewFactory.swift */,
-				CEBFD3022346EFB300EE52B6 /* GlobalVMFactory.swift */,
+				CEBFD3022346EFB300EE52B6 /* GlobalPresenterFactory.swift */,
 				CEBFD2B42346EFB200EE52B6 /* Helpers */,
 				CEBFD2B32346EFB200EE52B6 /* Info.plist */,
 				CEBFD2D42346EFB300EE52B6 /* Mocking */,
@@ -713,7 +713,7 @@
 				CEBFD3472346EFB300EE52B6 /* BaseCell.swift in Sources */,
 				CEBFD33E2346EFB300EE52B6 /* MoviePreviewCell.swift in Sources */,
 				CE229D592346F3F70023E62C /* MovieListRouter.swift in Sources */,
-				CEBFD34F2346EFB300EE52B6 /* GlobalVMFactory.swift in Sources */,
+				CEBFD34F2346EFB300EE52B6 /* GlobalPresenterFactory.swift in Sources */,
 				CEBFD3142346EFB300EE52B6 /* ViewControllerHelper.swift in Sources */,
 				CEBFD34D2346EFB300EE52B6 /* Request.swift in Sources */,
 				CEBFD3502346EFB300EE52B6 /* GlobalEnums.swift in Sources */,

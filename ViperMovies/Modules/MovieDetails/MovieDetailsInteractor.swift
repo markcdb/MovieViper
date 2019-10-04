@@ -45,8 +45,8 @@ class MovieDetailsInteractor: BaseInteractor<MovieRepository> {
                                 return
                             }
                             
-                            self.interactorDelegate?.didReceivedFetchMovie(movie)
                             self.interactorDelegate?.state = .success(nil)
+                            self.interactorDelegate?.didReceivedFetchMovie(movie)
         })
     }
     

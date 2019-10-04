@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 typealias PresenterFactory = GlobalPresenterFactory
 
@@ -18,18 +19,21 @@ class GlobalPresenterFactory {
         let interactor = MovieListInteractor(repository: repository ?? MovieRepository())
         let presenter = MovieListPresenter(interactor: interactor,
                                            router: router)
+        presenter.delegate = vc
         interactor.interactorDelegate = presenter
         return presenter
     }
     
     static func createMovieDetailsPresenterFromVC(_ vc: MovieDetailsViewController,
                                                   id: Int,
-                                                  repository: MovieRepository? = nil) -> MovieDetailsPresenter? {
-        let router     = MovieDetailsRouter(navigationController: vc.navigationController)
+                                                  repository: MovieRepository? = nil,
+                                                  nv: UINavigationController? = nil) -> MovieDetailsPresenter? {
+        let router     = MovieDetailsRouter(navigationController: nv)
         let interactor = MovieDetailsInteractor(repository: repository ?? MovieRepository())
         interactor.id  = id
         let presenter  = MovieDetailsPresenter(interactor: interactor,
                                                router: router)
+        presenter.delegate = vc
         interactor.interactorDelegate = presenter
         return presenter
     }

@@ -8,27 +8,27 @@
 
 import Foundation
 
-protocol MovieListDetailsDelegate: class {
+protocol MovieDetailsPresenterDelegate: class {
     
     func didUpdatePresenterWithState(_ state: ViewState)
 }
 
 class MovieDetailsPresenter: BasePresenter<MovieDetailsInteractor>, MovieListPresenterProtocol, MovieDetailsPresenterProtocol {
     
-    var movie: MovieDetails?
-    
-    var movieSorter: MovieSorter?
-    
-    var movies: [MovieDetails] = [] {
+    var movie: MovieDetails? {
         didSet {
             guard let state = state else { return }
             delegate?.didUpdatePresenterWithState(state)
         }
     }
     
+    var movieSorter: MovieSorter?
+    
+    var movies: [MovieDetails] = []
+    
     var router: MovieDetailsRouter?
     var state: ViewState?
-    var delegate: MovieListPresenterDelegate?
+    var delegate: MovieDetailsPresenterDelegate?
     
     init(interactor: MovieDetailsInteractor,
          router: MovieDetailsRouter) {
@@ -48,6 +48,10 @@ class MovieDetailsPresenter: BasePresenter<MovieDetailsInteractor>, MovieListPre
     
     func isLastPage() -> Bool {
         return interactor?.movieSorter?.isLastPage ?? false
+    }
+    
+    func pushWithId(_ id: Int) {
+        router?.pushToDetailsWithId(id)
     }
 }
 
@@ -69,6 +73,6 @@ extension MovieDetailsPresenter: MovieDetailsInteractorDelegate {
     
     func didReceivedFetchMovies(_ movies: [MovieDetails]?) {
         guard let movies = movies else { return }
-        self.movies = movies
+        self.movies.append(contentsOf: movies)
     }
 }

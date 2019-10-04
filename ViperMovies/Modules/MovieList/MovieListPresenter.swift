@@ -39,6 +39,13 @@ class MovieListPresenter: BasePresenter<MovieListInteractor>, MovieListPresenter
         movies.removeAll()
     }
     
+    func pushFromRow(_ row: Int) {
+        
+        if let id = getMovieIdAt(row) {
+            router?.pushToDetailsWithId(id)
+        }
+    }
+  
     func isLastPage() -> Bool {
         return interactor?.movieSorter?.isLastPage ?? false
     }
@@ -53,6 +60,6 @@ extension MovieListPresenter: MovieListInteractorDelegate {
     
     func didReceivedFetchMovies(_ movies: [MovieDetails]?) {
         guard let movies = movies else { return }
-        self.movies = movies
+        self.movies.append(contentsOf: movies)
     }
 }

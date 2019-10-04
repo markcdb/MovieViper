@@ -8,20 +8,12 @@
 
 import UIKit
 
-protocol MovieDetailsCellDelegate: class {
-    
-    func didTapBookButton()
-}
-
 class MovieDetailsCell: BaseCell {
 
     @IBOutlet weak var sypnosisLabel: BaseLabel?
     @IBOutlet weak var genresLabel: BaseLabel?
     @IBOutlet weak var languagesLabel: BaseLabel?
     @IBOutlet weak var durationLabel: BaseLabel?
-    @IBOutlet weak var bookButton: UIButton?
-    
-    weak var delegate: MovieDetailsCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,9 +24,5 @@ class MovieDetailsCell: BaseCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-
-    @IBAction func didTapBookButton(_ sender: UIButton) {
-        delegate?.didTapBookButton()
     }
 }

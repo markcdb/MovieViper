@@ -34,6 +34,7 @@ UITableViewDelegate, UITableViewDataSource {
         tableView?.dataSource      = self
         tableView?.refreshControl  = ViewFactory.createRefreshControler(self,
                                                                         action: #selector(pullRefresh))
+        presenter?.request()
     }
     
     override func push() {
@@ -88,8 +89,7 @@ UITableViewDelegate, UITableViewDataSource {
             } else if indexPath.row == 1 {
                 cell = CellFactory.createMovieDetailsCell(presenter: presenter,
                                                           tableView: tableView,
-                                                          indexPath: indexPath,
-                                                          delegate: self)
+                                                          indexPath: indexPath)
             } else {
                 cell = CellFactory.createMovieSimilarCell(presenter: presenter,
                                                           tableView: tableView,
@@ -144,10 +144,9 @@ extension MovieDetailsViewController {
 }
 
 //MARK: - Base VM Delegate
-extension MovieDetailsViewController: BaseVMDelegate {
-    
-    func didUpdateModelWithState(_ viewState: ViewState) {
-        switch viewState {
+extension MovieDetailsViewController: MovieDetailsPresenterDelegate {
+    func didUpdatePresenterWithState(_ state: ViewState) {
+        switch state {
         case .success(_),
              .error(_):
             tableView?.endRefreshing()
@@ -159,13 +158,6 @@ extension MovieDetailsViewController: BaseVMDelegate {
     }
 }
 
-extension MovieDetailsViewController: MovieDetailsCellDelegate {
-    
-    func didTapBookButton() {
-        push()
-    }
-}
-
 extension MovieDetailsViewController: MovieSimilarCellDelegate {
     func fetchNewPage() {
         getSimilar()
@@ -173,9 +165,6 @@ extension MovieDetailsViewController: MovieSimilarCellDelegate {
     
     func didTapCellWithId(_ id: Int) {
         
-        if let vc = GlobalVCFactory.createMovieDetailsWithId(id) {
-            navigationController?.pushViewController(vc,
-                                                     animated: true)
-        }
+        presenter?.pushWithId(id)
     }
 }
